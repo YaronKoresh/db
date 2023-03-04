@@ -1,5 +1,5 @@
 {
-  "name": "DB.js",
+  "name": "@yaronkoresh/db.js",
   "main": "./DB.js",
   "version": "1.0.0",
   "description": "Manage a NodeJS Database within text files - without SQL",
