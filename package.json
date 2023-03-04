@@ -2,7 +2,7 @@
   "name": "DB.js",
   "main": "./DB.js",
   "version": "1.0.0",
-  "description": "Algorithm measuring percentages of correspondence between texts",
+  "description": "Manage a NodeJS Database within text files - without SQL",
   "author": "Yaron Koresh <aharonkoresh1@gmail.com>",
   "license": {
     "type": "MIT",
