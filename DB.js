@@ -3,7 +3,7 @@ const Directory = require("./WRITE.js").DIRECTORY;
 const Read = require("./READ.js").FILE;
 const Names = require("./READ.js").NAMES;
 
-module.exports.SET = function(db, data) {
+module.exports.Set = function(db, data) {
 	const timestamp = parseInt(Date.parse(new Date().toISOString()));
 	Directory(`./db/${db}/${timestamp}/`);
 	const keys = Object.keys(data);
@@ -13,7 +13,7 @@ module.exports.SET = function(db, data) {
 		Write(files[i], values[i]);
 	}
 }
-module.exports.GET = function(db, time_s, filters) {
+module.exports.Get = function(db, time_s, filters) {
 	const timestamp = parseInt(Date.parse(new Date().toISOString()));
 	time_s = parseInt(Date.parse(new Date(time_s).toISOString()));
 	var folders = null;
