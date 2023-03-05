@@ -6,7 +6,7 @@ Manage your Database inside text files - without SQL
 # Example
 
 ```
-var db = require("db");
+var db = require("@yaronkoresh/db");
 var searchFrom = "Feb 1 1970 15:00:00 GMT+2";
 var filter1 = { a:"a" , b:"b" , c:"c" };
 var filter2 = { c:"c" };
