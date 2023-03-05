@@ -13,13 +13,13 @@ var filter2 = { c:"c" };
 var filter3 = { };
 
 // Current time: 'Mon, 27 Feb 2023 21:08:31 GMT+2'
-db.Set( "ACCOUNTS" , { a:"a" , b:"b" , c:"c"  } );
-db.Set( "ACCOUNTS" , { c:"c" , d:"d" , e:"e"  } );
-db.Set( "ACCOUNTS" , { a:"xyz" , b:"xyz" , c:"xyz" } );
+db.Set( "Accounts" , { a:"a" , b:"b" , c:"c"  } );
+db.Set( "Accounts" , { c:"c" , d:"d" , e:"e"  } );
+db.Set( "Accounts" , { a:"xyz" , b:"xyz" , c:"xyz" } );
 
-var a = db.Get( "ACCOUNTS" , searchFrom , filter1 );
-var b = db.Get( "ACCOUNTS" , searchFrom , filter2 );
-var c = db.Get( "ACCOUNTS" , searchFrom , filter3 );
+var a = db.Get( "Accounts" , searchFrom , filter1 );
+var b = db.Get( "Accounts" , searchFrom , filter2 );
+var c = db.Get( "Accounts" , searchFrom , filter3 );
 
 console.log( a );
 console.log( b );
