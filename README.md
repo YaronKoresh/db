@@ -6,7 +6,7 @@ Manage your Database inside text files - without SQL
 # Example
 
 ```
-var DB = require("./DB.js");
+var DB = require("DB.js");
 var searchFrom = "Feb 1 1970 15:00:00 GMT+2";
 var filter1 = { a:"a" , b:"b" , c:"c" };
 var filter2 = { c:"c" };
