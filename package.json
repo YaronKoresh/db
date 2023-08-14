@@ -1,8 +1,8 @@
 {
   "name": "@yaronkoresh/db",
-  "main": "./DB.js",
-  "version": "2.0.0",
-  "description": "Manage a NodeJS Database within text files - without SQL",
+  "main": "./server.js",
+  "version": "3.0.0",
+  "description": "Manage a NodeJS Database within text files - with no SQL",
   "author": "Yaron Koresh <aharonkoresh1@gmail.com>",
   "scripts": {
     "test": "echo \"No test specified\" && exit 0"
