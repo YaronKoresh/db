@@ -1,6 +1,6 @@
 {
   "name": "@yaronkoresh/db",
-  "main": "./server.js",
+  "main": "./index.js",
   "version": "3.0.0",
   "description": "Manage a NodeJS Database within text files - with no SQL",
   "author": "Yaron Koresh <aharonkoresh1@gmail.com>",
