@@ -67,7 +67,7 @@ We have 5 actions:
 
 # Latest:
 
-* Just like `Get`, but it some changes:
+* Just like `Get`, but with some changes:
 
 * * Give only the latest version for each item (you can change the name of identifier property, fron "id" to something else).
 
@@ -83,7 +83,7 @@ We have 5 actions:
 
 * For that, put your server on maintenance mode, to restrict access, then use that action with two parameters:
 
-* * the first requires parameter: the sub-folder to clean-up.
+* * the first required parameter: the sub-folder to clean-up.
 
 * * the second optional parameter: the name of the key, that holds the unique identifiers.
 
@@ -91,7 +91,7 @@ We have 5 actions:
 
 # ForceHistoryCleanUpForEach:
 
-* Do a history clean up for all of out sub-folders! (all the database actually...).
+* Do a history clean up for all of your sub-folders! (all your database).
 
 * For that, put your server on maintenance mode, to restrict access, then use that action with one optional parameters:
 
