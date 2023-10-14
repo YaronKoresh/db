@@ -1,102 +1,117 @@
+# @yaronkoresh/db: Manage your Database inside text files - without SQL.
 
-# DB.js
+## What it does?
 
-* Manage your Database inside text files - without SQL
+* Manage your Database inside text files - without SQL.
 
-* Results are sorted, from the most recent data, to the most early data created
+* Results are sorted, from the most recent data, to the most early data created.
 
-### First, you need to create an environment variable called "DB" with the path to the database folder. You can use [DotEnv](https://npmjs.com/package/dotenv) for that
+* Have a built-in function for history clean-up.
 
-# Example
+- - -
 
-```
-// Load environment variables
+## How it works?
 
-import "dotenv/config" // or: require('dotenv').config();
+1. Read the path to the db folder, using a global called db.
 
-// Require/Import this package
+2. Write/Read data from the database.
 
-import "@yaronkoresh/db" // or: require("@yaronkoresh/db");
+3. When writing, ensure the category folder exists, then add folder named as the current timestamp, with file (named as the key) for each value.
 
-// Now you have a new global async function, called: "Database"
-```
+4. When reading, get the category content, filter timestamps & key-values pairs.
 
----
+5. The package could also clean-up the history from when database, when needed, using `ForceHistoryCleanUp` or `ForceHistoryCleanUpForEach`.
 
-This "Database" global async function, has the spesific syntax, of: `action` & `parameter(s)`;
+- - -
 
-We have 5 actions:
+## Using "Set":
 
-# Set:
+* Purpose: Adds data to one of the database categories.
 
-* Adds data to one of the database sub-folders.
+* Parameters:
 
-* Sub-folder could be any "type" you want to specify: "account"/"product"/"game".
+* * Category: the name of the category that will get the new data (required).
 
-* The data need to be an Object `{ key: value }`.
+* * Data: an object contains the key-value data (required).
 
-* The keys of the data, are the properties of what you want to insert.
+* Examples:
 
-* With any data you want to insert, please insert a property (maybe call it "id"?) that its value is unique, to that specific item, in its sub-folder.
+* * `Set( "product", { status: "on", id: "some-random-characters", price: 10.90, title: "My new product" } )` .
 
-* The unique identifier will let you add that item again, with the same "unique identifier" but other properties could be different.
+- - -
 
-* You will be able to get the latest version only - with the action called `Latest` (you will read about it, too).
+## Using "Get":
 
-* Sometimes, we want to flag a product as "off", or account as "temporary blocked", so:
+* Purpose: Get all data of a specific sub-folder, including replaced data (good for searching history).
 
-* * I recommended to use a "status" property, then, you can add the same data again, but just flip its flag (and get the latest version using "Latest").
+* Parameters:
 
-* An example: `await Database( "Set", "product", { id: "BestMarket-1354d987h3287dh", status: "on", taste: "very tasty!", price: "very cheap!" } )`.
+* * Category: the name of the category containing the data (required).
 
-# Get:
+* * Filters: an object contains the key-value filters (default = {}).
 
-* Get all data of a specific sub-folder, including replaced data (good for searching edits history).
+* * Days: The maximum number of days to go back in time, null means "disabled" (default = null).
 
-* History, is data that was added again, with the same "key identifier" (an example: "id" property/key).
+* Examples:
 
-* The data could be filtered with an object like so: `{ property1: value1, property2: value2 }`.
+* * `Get( "product", { status: "on", id: "some-random-characters" }, 7 )` , which returns versions of products, including history, sorted from recent to early, created within the last week.
 
-* The data could be limited with a maximum number of days to go back in time, eg. 30 (return just items created in the last 30 days).
+- - -
 
-* When setting the filter to `{}` - that filter have no effect (default).
+## Using "Latest":
 
-* When setting days limiter to null - that limiter is disabled (default).
+* Purpose: Give only the latest version for each item, using an "identifier key" to seperate different items within the same category.
 
-* An example: `await Database( "Get", "product", { status: "on", price: "very cheap!" } , 7 )`.
+* Parameters:
 
-# Latest:
+* * Categories: an name of category, an array of names, or even "*", which means, all categories (default = "*").
 
-* Just like `Get`, but with some changes:
+* * Filters: an object contains the key-value filters (default = {}).
 
-* * Give only the latest version for each item (you can change the name of identifier property, fron "id" to something else).
+* * Days: The maximum number of days to go back in time, null means "disabled" (default = null).
 
-* * You can choose one sub-folder, an array of sub-folders, or "*" (default) which means - all sub-folders.
+* * IdentifierKey: the key selected to seperate different items within the same category (default = "id").
 
-* * It have an forth optional parameter, which define the name of the key, that holds the unique identifiers.
+* Examples:
 
-* An example: `await Database( "Latest", "*", {}, null, "id" )`, which is equal to: `await Database( "Latest" )`.
+* * `Latest( "product", {}, 30 )` , which returns the latest versions of products, which got an update within the last month.
 
-# ForceHistoryCleanUp:
+- - -
 
-* Sometimes we really need to remove unused history (do it when on maintenance mode, so no one read from the database that moment!).
+## Using "ForceHistoryCleanUp":
 
-* For that, put your server on maintenance mode, to restrict access, then use that action with two parameters:
+* Purpose: Remove unused history, from one category (do it when on maintenance mode, so no one read from the database in that moment).
 
-* * the first required parameter: the sub-folder to clean-up.
+* Parameters:
 
-* * the second optional parameter: the name of the key, that holds the unique identifiers.
+* * Category: the category to clean from history (required).
 
-* An example: `await Database( "ForceHistoryCleanUp", "product" )`.
+* * IdentifierKey: the key selected to seperate different items within the selected category (default = "id").
 
-# ForceHistoryCleanUpForEach:
+* Examples:
 
-* Do a history clean up for all of your sub-folders! (all your database).
+* * `ForceHistoryCleanUp( "product" )` .
 
-* For that, put your server on maintenance mode, to restrict access, then use that action with one optional parameters:
+* * `ForceHistoryCleanUp( "product", "A-Custom-Products-Seperation-Key" )` .
 
-* * the only optional parameter: the name of the key, that holds the unique identifiers.
+- - -
 
-* An example: `await Database( "ForceHistoryCleanUpForEach" )`.
+## Using "ForceHistoryCleanUpForEach":
 
-### Enjoy!
+* Purpose: Remove unused history, from all categories (do it when on maintenance mode, so no one read from the database in that moment).
+
+* Parameters:
+
+* * IdentifierKey: the key selected to seperate different items within each category (default = "id").
+
+* Examples:
+
+* * `ForceHistoryCleanUp( )` .
+
+* * `ForceHistoryCleanUp( "A-Custom-Products-Seperation-Key" )` .
+
+- - -
+
+## License:
+
+### This project is licensed under the MIT open-source license.

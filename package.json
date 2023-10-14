@@ -1,19 +1,31 @@
 {
   "name": "@yaronkoresh/db",
-  "main": "./index.js",
-  "version": "7.0.0",
-  "description": "Manage a NodeJS Database within text files - with no SQL",
+  "type": "module",
+  "main": "./index.mjs",
+  "version": "8.0.0",
+  "description": "Manage a NodeJS Database within text files - without SQL.",
   "author": "Yaron Koresh <aharonkoresh1@gmail.com>",
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "exit 0"
   },
   "license": {
     "type": "MIT",
-    "url": "https://github.com/YaronKoresh/DB.js/raw/master/LICENSE"
+    "url": "https://raw.githubusercontent.com/YaronKoresh/db/main/LICENSE"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/YaronKoresh/DB.js.git"
+    "url": "https://github.com/YaronKoresh/db.git"
   },
-  "dependencies": { }
+ "bugs": {
+    "url": "https://github.com/YaronKoresh/db/issues"
+  },
+ "keywords": [
+    "db",
+    "database",
+    "nosql",
+    "nonrelational",
+    "key-value"
+  ],
+  "dependencies": {
+  }
 }
